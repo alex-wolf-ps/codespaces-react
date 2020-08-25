@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.repo-card {
+  margin-bottom: 25px;
+}
+
+.jumbotron, header {
+  width: 100%;
+}
