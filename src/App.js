@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
-import logo from './logo.svg';
 import './App.css';
 import moment from 'moment';
 
@@ -10,14 +9,11 @@ function App() {
   const [repos, setRepos] = useState([]);
   const [user, setUser] = useState();
 
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = data => {
     setName(data.example);
   };
-
-  
-
 
   useEffect(() => {
     if (name) {
@@ -62,7 +58,7 @@ function App() {
           <div className="col-md-4">
             {user ?
               <div className="card">
-                <img src={user.avatar_url} className="card-img-top" />
+                <img alt="profile" src={user.avatar_url} className="card-img-top" />
                 <div className="card-body">
                   <h5 className="card-title">{user.login}</h5>
                 </div>
@@ -73,8 +69,8 @@ function App() {
                   <li className="list-group-item">Location: {user.location}</li>
                 </ul>
                 <div className="card-body">
-                  <a href={user.repos_url} target="_blank" className="card-link">Repos</a>
-                  <a href={user.blog} target="_blank" className="card-link">Blog</a>
+                  <a href={user.repos_url} target="_blank" rel="noopener noreferrer" className="card-link">Repos</a>
+                  <a href={user.blog} target="_blank" rel="noopener noreferrer" className="card-link">Blog</a>
                 </div>
               </div>
               : null}
@@ -86,7 +82,7 @@ function App() {
                   <h5 className="card-title">{repo.name}</h5>
                   <h6 className="card-subtitle mb-2 text-muted">Created: {formatTime(repo.created_at)}</h6>
                   <p className="card-text">{repo.description}</p>
-                  <a href={repo.html_url} target="_blank"  className="card-link">View Repository</a>
+                  <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="card-link">View Repository</a>
                 </div>
               </div>
             )
