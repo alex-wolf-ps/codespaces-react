@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import './App.css';
 import moment from 'moment';
+import Profile from './components/Profile'
+import RepositoryList from './components/RepositoryList';
 
 function App() {
   const [name, setName] = useState();
@@ -56,37 +58,10 @@ function App() {
         </div>
         <div className="row">
           <div className="col-md-4">
-            {user ?
-              <div className="card">
-                <img alt="profile" src={user.avatar_url} className="card-img-top" />
-                <div className="card-body">
-                  <h5 className="card-title">{user.login}</h5>
-                </div>
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item">Created: {formatTime(user.created_at)}</li>
-                  <li className="list-group-item">Company: {user.company}</li>
-                  <li className="list-group-item">Bio: {user.bio}</li>
-                  <li className="list-group-item">Location: {user.location}</li>
-                </ul>
-                <div className="card-body">
-                  <a href={user.repos_url} target="_blank" rel="noopener noreferrer" className="card-link">Repos</a>
-                  <a href={user.blog} target="_blank" rel="noopener noreferrer" className="card-link">Blog</a>
-                </div>
-              </div>
-              : null}
+            <Profile user={user} />
           </div>
           <div className="col-md-8">
-            {repos.length > 0 && repos.map((repo) =>
-              <div className="card repo-card">
-                <div class="card-body">
-                  <h5 className="card-title">{repo.name}</h5>
-                  <h6 className="card-subtitle mb-2 text-muted">Created: {formatTime(repo.created_at)}</h6>
-                  <p className="card-text">{repo.description}</p>
-                  <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="card-link">View Repository</a>
-                </div>
-              </div>
-            )
-            }
+            <RepositoryList repos={repos} />
           </div>
         </div>
       </div>
